@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import BlockProfile from './BlockProfile'
 
 export default class BlockList extends Component {
 	constructor(props) {
@@ -12,18 +13,15 @@ export default class BlockList extends Component {
 		this.printId = this.printId.bind(this);
 	}
 	printId(event){
-		// console.log(this.state.data);
-		// console.log(event.target.id);
 		this.setState({
 			visibility: false,
-			idOfBlock: this.props.getId(event.target.id),
+			idOfBlock: event.target.id,
 		});
-		// this.props.getId(event.target.id);
 	}
 	render() {
 		const { data } = this.state;
 		let counter = 0;
-		if (this.state.visibility)
+		if (this.state.visibility) {
 			return (
 				<div className="block-list">
 					<h1>Список пользователей</h1>
@@ -42,7 +40,12 @@ export default class BlockList extends Component {
 					<div className="person-find"><p>Найдено 10 пользователей</p></div>
 				</div>
 			);
+		} else {
+			return (
+				<div>
+					<BlockProfile data={data[this.state.idOfBlock]}/>
+				</div>
+			);
 		}
-		else
-			return ;
+	}
 }
