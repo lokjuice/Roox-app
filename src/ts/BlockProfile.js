@@ -11,7 +11,7 @@ export default class BlockProfile extends Component {
 			 btnFlag: "disabled",
 		}
 		this.editFlagChange = this.editFlagChange.bind(this);
-		this.formCheck = this.formCheck.bind(this);
+		this.formSave = this.formSave.bind(this);
 	}
 	editFlagChange() {
 		this.setState({
@@ -20,8 +20,13 @@ export default class BlockProfile extends Component {
 			btnFlag: "",
 		});
 	}
-	formCheck(event) {
-		console.log(event.target);
+	formSave(event) {
+		let mas = [];
+		for (let i = 0; i < 9; i++){
+			mas.push(event.target[i].value);
+		}
+		let saveJson = JSON.stringify(mas);
+		console.log(saveJson);
 		event.preventDefault();
 	}
 	render() {
@@ -33,7 +38,7 @@ export default class BlockProfile extends Component {
 					<h1>Профиль пользователя</h1>
 					<button onClick={this.editFlagChange}>Редактировать</button>
 				</div>
-				<form onSubmit={this.formCheck}>
+				<form onSubmit={this.formSave}>
 					<FormBlock label="Name" value={data.name} cnt={cnt}/>
 					<FormBlock label="User name" value={data.username} cnt={cnt}/>
 					<FormBlock label="E-mail" value={data.email} cnt={cnt}/>
@@ -42,7 +47,7 @@ export default class BlockProfile extends Component {
 					<FormBlock label="Zip Code" value={data.address.zipcode} cnt={cnt}/>
 					<FormBlock label="Phone" value={data.phone} cnt={cnt}/>
 					<FormBlock label="Website" value={data.website} cnt={cnt}/>
-					<FormBlock label="Comment" cnt={cnt}/>
+					<FormBlock label="Comment" value="" cnt={cnt} type="text-area"/>
 					<button className="btn-sub" disabled={this.state.btnFlag} style={{backgroundColor: this.state.btnColor}}>Отправить</button>
 				</form>
 			</div>
