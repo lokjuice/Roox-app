@@ -1,5 +1,4 @@
 import '../scss/main.scss'
-// import React, { Component } from 'react'
 import React from 'react';
 import LeftPanel from './LeftPanel';
 import RightPanel from './RightPanel';
