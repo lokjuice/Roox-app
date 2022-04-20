@@ -1,14 +1,24 @@
-import React, { Component } from 'react'
+import React from 'react'
 import FormBlock from './FormBlock';
 
-export default class BlockProfile extends Component {
-	constructor(props) {
+interface IProps {
+	data: any;
+}
+
+interface IState {
+	editFlag: number;
+	btnColor: string;
+	btnFlag: boolean;
+}
+
+export default class BlockProfile extends React.Component<IProps, IState> {
+	constructor(props: IProps) {
 		super(props)
 	
 		this.state = {
 			 editFlag: 0,
 			 btnColor: "#AFAFAF",
-			 btnFlag: "disabled",
+			 btnFlag: true,
 		}
 		this.editFlagChange = this.editFlagChange.bind(this);
 		this.formSave = this.formSave.bind(this);
@@ -17,10 +27,10 @@ export default class BlockProfile extends Component {
 		this.setState({
 			editFlag: 1,
 			btnColor: "#52CF4F",
-			btnFlag: "",
+			btnFlag: false,
 		});
 	}
-	formSave(event) {
+	formSave(event: any) {
 		let mas = [];
 		for (let i = 0; i < 9; i++){
 			mas.push(event.target[i].value);

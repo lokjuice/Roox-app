@@ -1,7 +1,22 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-export default class FormBlock extends Component {
-	constructor(props) {
+interface IProps {
+	// data: any;
+	value: string;
+	cnt: number;
+	type?: string;
+	label: string;
+}
+
+interface IState {
+	value: string;
+	// editFlag: number;
+	// btnColor: string;
+	// btnFlag: string;
+}
+
+export default class FormBlock extends React.Component<IProps, IState> {
+	constructor(props: IProps) {
 		super(props)
 	
 		this.state = {
@@ -9,7 +24,7 @@ export default class FormBlock extends Component {
 		}
 		this.handleChange = this.handleChange.bind(this);
 	}
-	handleChange(event) {
+	handleChange(event: any) {
 		this.setState({
 			value: event.target.value,
 		})
@@ -20,7 +35,7 @@ export default class FormBlock extends Component {
 				return (
 					<div className="input-block">
 						<label>{this.props.label}</label><br />
-						<textarea type="text" value={this.state.value} readOnly style={{color: "#0000004D"}} onChange={this.handleChange}/>
+						<textarea value={this.state.value} readOnly style={{color: "#0000004D"}} onChange={this.handleChange}/>
 					</div>
 				);
 			else
@@ -36,7 +51,7 @@ export default class FormBlock extends Component {
 				return (
 					<div className="input-block">
 						<label>{this.props.label}</label><br />
-						<textarea type="text" value={this.state.value} onChange={this.handleChange}/>
+						<textarea value={this.state.value} onChange={this.handleChange}/>
 					</div>
 				);
 			else

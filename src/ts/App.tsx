@@ -1,10 +1,22 @@
 import '../scss/main.scss'
-import React, { Component } from 'react'
+// import React, { Component } from 'react'
+import React from 'react';
 import LeftPanel from './LeftPanel';
 import RightPanel from './RightPanel';
 
-class App extends Component {
-  constructor(props) {
+interface IProps {
+}
+
+interface IState {
+  data: any;
+	error: any;
+	isLoaded: boolean;
+	byCity: boolean | null;
+	byCompany: boolean | null;
+}
+
+class App extends React.Component<IProps, IState> {
+  constructor(props: IProps) {
     super(props)
   
 		this.state = {
@@ -31,7 +43,7 @@ class App extends Component {
 			});
 		})
 	}
-  updateData = (value1, value2) => {
+  updateData = (value1: boolean, value2: boolean) => {
 		this.setState({
       byCity: value2,
 			byCompany: value1,
